@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NEWBEE 东京舞蹈游学营 2026</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --yellow: #FFCC00;
+    --dark:   #0e0e14;
+    --dark2:  #16161e;
+    --white:  #ffffff;
+    --gray:   #aaaaaa;
+    --red:    #cc2200;
+  }
+
+  body {
+    background: var(--dark);
+    color: var(--white);
+    font-family: 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+    max-width: 480px;
+    margin: 0 auto;
+    padding-bottom: 40px;
+  }
+
+  /* ── 顶部 hero ── */
+  .hero {
+    background: var(--dark);
+    text-align: center;
+    padding: 32px 20px 20px;
+    border-bottom: 3px solid var(--yellow);
+  }
+  .hero .logo-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 8px;
+  }
+  .hero h1 {
+    font-size: 64px;
+    font-weight: 900;
+    color: var(--yellow);
+    letter-spacing: 4px;
+    line-height: 1;
+  }
+  .hero .subtitle {
+    font-size: 16px;
+    color: var(--gray);
+    margin-top: 6px;
+    letter-spacing: 1px;
+  }
+  .hero .tagline {
+    display: inline-block;
+    margin-top: 14px;
+    background: var(--yellow);
+    color: var(--dark);
+    font-size: 15px;
+    font-weight: 700;
+    padding: 6px 18px;
+    border-radius: 2px;
+    letter-spacing: 1px;
+  }
+  .hero .meta {
+    margin-top: 14px;
+    font-size: 14px;
+    color: var(--gray);
+    line-height: 1.9;
+  }
+  .hero .meta span {
+    color: var(--yellow);
+    font-weight: 600;
+  }
+
+  /* ── 区块标题 ── */
+  .section {
+    padding: 28px 16px 0;
+  }
+  .section-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--yellow);
+    border-left: 4px solid var(--yellow);
+    padding-left: 10px;
+    margin-bottom: 18px;
+    letter-spacing: 1px;
+  }
+
+  /* ── 老师卡片 ── */
+  .teacher-card {
+    background: var(--dark2);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 20px;
+    border: 1px solid #2a2a35;
+  }
+  .teacher-header {
+    display: flex;
+    align-items: stretch;
+    gap: 0;
+  }
+  .teacher-photo {
+    width: 120px;
+    min-height: 150px;
+    object-fit: cover;
+    object-position: top center;
+    flex-shrink: 0;
+  }
+  .teacher-photo-placeholder {
+    width: 120px;
+    min-height: 150px;
+    background: #2a2a3a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+    flex-shrink: 0;
+  }
+  .teacher-info {
+    padding: 14px 14px;
+    flex: 1;
+  }
+  .teacher-role {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 2px;
+    margin-bottom: 6px;
+    letter-spacing: 0.5px;
+  }
+  .role-special { background: var(--yellow); color: var(--dark); }
+  .role-lead    { background: #3c5ac8; color: white; }
+  .role-guest   { background: #333; color: var(--gray); }
+
+  .teacher-name {
+    font-size: 26px;
+    font-weight: 900;
+    color: var(--white);
+    line-height: 1.1;
+    margin-bottom: 8px;
+  }
+  .teacher-creds {
+    list-style: none;
+    padding: 0;
+  }
+  .teacher-creds li {
+    font-size: 12.5px;
+    color: var(--gray);
+    padding: 2px 0;
+    padding-left: 12px;
+    position: relative;
+    line-height: 1.5;
+  }
+  .teacher-creds li::before {
+    content: '·';
+    position: absolute;
+    left: 0;
+    color: var(--yellow);
+    font-weight: 700;
+  }
+  .teacher-creds li strong {
+    color: var(--white);
+  }
+
+  /* ── 视频区 ── */
+  .video-section {
+    padding: 14px 14px;
+    border-top: 1px solid #2a2a35;
+  }
+  .video-label {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--yellow);
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  .video-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .video-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #1a1a25;
+    border-radius: 6px;
+    padding: 10px 12px;
+    text-decoration: none;
+    color: var(--white);
+    border: 1px solid #2a2a35;
+    transition: border-color 0.2s;
+  }
+  .video-link:hover { border-color: var(--yellow); }
+  .video-thumb {
+    width: 60px;
+    height: 40px;
+    background: #333;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+  .video-meta { flex: 1; }
+  .video-title { font-size: 13px; font-weight: 600; line-height: 1.4; }
+  .video-src   { font-size: 11px; color: var(--gray); margin-top: 2px; }
+
+  /* 本地视频 */
+  .video-item {
+    background: #1a1a25;
+    border: 1px solid #2a2a35;
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .video-item video {
+    width: 100%;
+    display: block;
+    max-height: 240px;
+    background: #000;
+  }
+  .video-item-label {
+    font-size: 12px;
+    color: var(--gray);
+    padding: 6px 10px;
+    line-height: 1.4;
+  }
+  .video-item-label strong {
+    color: var(--white);
+  }
+
+  /* ── 行程区 ── */
+  .schedule-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+  .schedule-table th {
+    background: var(--yellow);
+    color: var(--dark);
+    font-weight: 700;
+    padding: 8px 10px;
+    text-align: left;
+  }
+  .schedule-table td {
+    padding: 9px 10px;
+    border-bottom: 1px solid #2a2a35;
+    color: var(--gray);
+    vertical-align: top;
+    line-height: 1.5;
+  }
+  .schedule-table tr:nth-child(even) td { background: #161620; }
+  .schedule-table td:first-child {
+    color: var(--yellow);
+    font-weight: 700;
+    white-space: nowrap;
+    width: 80px;
+  }
+
+  /* ── 价格区 ── */
+  .price-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 14px;
+  }
+  .price-card {
+    background: var(--dark2);
+    border-radius: 8px;
+    padding: 16px 14px;
+    border: 1px solid #2a2a35;
+    text-align: center;
+  }
+  .price-card.highlight {
+    border-color: var(--yellow);
+    background: #1e1a00;
+  }
+  .price-label { font-size: 13px; color: var(--gray); margin-bottom: 6px; }
+  .price-amount {
+    font-size: 28px;
+    font-weight: 900;
+    color: var(--yellow);
+    line-height: 1;
+  }
+  .price-card.highlight .price-amount { font-size: 32px; }
+  .price-note { font-size: 11px; color: var(--gray); margin-top: 5px; }
+  .price-card.highlight .price-note { color: #cc9900; }
+
+  .include-list {
+    background: var(--dark2);
+    border-radius: 8px;
+    padding: 14px 16px;
+    border: 1px solid #2a2a35;
+    margin-bottom: 12px;
+  }
+  .include-list h4 {
+    font-size: 13px;
+    color: var(--yellow);
+    margin-bottom: 8px;
+    font-weight: 700;
+  }
+  .include-list li {
+    font-size: 13px;
+    color: var(--gray);
+    padding: 3px 0 3px 14px;
+    position: relative;
+    line-height: 1.5;
+  }
+  .include-list li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: #44cc66;
+    font-size: 11px;
+  }
+
+  /* ── 底部联系 ── */
+  .contact-bar {
+    background: var(--yellow);
+    margin: 28px 16px 0;
+    border-radius: 10px;
+    padding: 20px 18px;
+    text-align: center;
+  }
+  .contact-bar h3 {
+    font-size: 18px;
+    font-weight: 900;
+    color: var(--dark);
+    margin-bottom: 10px;
+  }
+  .contact-bar p {
+    font-size: 15px;
+    color: #333;
+    line-height: 2;
+  }
+  .contact-bar .wechat {
+    font-size: 20px;
+    font-weight: 900;
+    color: var(--dark);
+    display: block;
+    margin-top: 4px;
+  }
+  .contact-bar .note {
+    font-size: 12px;
+    color: #666;
+    margin-top: 6px;
+  }
+
+  .footer {
+    text-align: center;
+    padding: 20px 16px 0;
+    font-size: 12px;
+    color: #444;
+    line-height: 1.8;
+  }
+</style>
+</head>
+<body>
+
+<!-- ── Hero ── -->
+<div class="hero">
+  <h1>NEWBEE</h1>
+  <div class="subtitle">东京舞蹈游学营 · TOKYO DANCE CAMP 2026</div>
+  <div class="tagline">中日美超豪华师资阵容，更有明星编舞师教学</div>
+  <div class="meta">
+    <span>2026年8月</span> · 东京，日本<br>
+    7天6晚 · 8-14岁 · <span>限额20人</span><br>
+    《这就是街舞第三季》才艺导演出品
+  </div>
+</div>
+
+<!-- ── 师资介绍 ── -->
+<div class="section">
+  <div class="section-title">✦ 师资阵容</div>
+
+  <!-- Franklin -->
+  <div class="teacher-card">
+    <div class="teacher-header">
+      <img src="../pic/Franklin.jpg" class="teacher-photo" alt="Franklin" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="teacher-photo-placeholder" style="display:none">🕺</div>
+      <div class="teacher-info">
+        <div class="teacher-role role-special">★ 特邀嘉宾 · 来自洛杉矶</div>
+        <div class="teacher-name">Franklin</div>
+        <ul class="teacher-creds">
+          <li><strong>《这就是街舞》第二季全国亚军</strong></li>
+          <li>易烊千玺战队成员</li>
+          <li><strong>王嘉尔 · 王一博 御用编舞师</strong></li>
+          <li>优酷《师傅我要跳舞了》萌娃舞蹈师傅</li>
+          <li>深受萌娃喜爱，教学经验丰富</li>
+        </ul>
+      </div>
+    </div>
+    <div class="video-section">
+      <div class="video-label">▶ 代表作品</div>
+      <div class="video-list">
+        <a href="https://b23.tv/ZGbdOV2" target="_blank" class="video-link">
+          <div class="video-thumb">▶</div>
+          <div class="video-meta">
+            <div class="video-title">《这就是街舞》S2 总决赛《春风吹》</div>
+            <div class="video-src">B站</div>
+          </div>
+        </a>
+        <a href="https://b23.tv/iYso0lY" target="_blank" class="video-link">
+          <div class="video-thumb">▶</div>
+          <div class="video-meta">
+            <div class="video-title">王一博「散落的华服」编舞</div>
+            <div class="video-src">B站</div>
+          </div>
+        </a>
+        <a href="https://b23.tv/A3u4fZU" target="_blank" class="video-link">
+          <div class="video-thumb">▶</div>
+          <div class="video-meta">
+            <div class="video-title">王嘉尔「ISIS」编舞 · SDC</div>
+            <div class="video-src">B站</div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- SHiN -->
+  <div class="teacher-card">
+    <div class="teacher-header">
+      <img src="../pic/SHiN.jpg" class="teacher-photo" alt="SHiN" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="teacher-photo-placeholder" style="display:none">🕺</div>
+      <div class="teacher-info">
+        <div class="teacher-role role-lead">游学营班主任 · 全程主理</div>
+        <div class="teacher-name">SHiN</div>
+        <ul class="teacher-creds">
+          <li><strong>2016 里约奥运会闭幕式舞蹈演员</strong></li>
+          <li><strong>红白歌会舞者</strong>（日本春晚）</li>
+          <li><strong>2NE1 全球巡演伴舞</strong></li>
+          <li>日本全国舞蹈大赛特邀裁判</li>
+          <li>日本知名舞室 En 超人气老师</li>
+          <li>十几年教成人和小朋友的经验，资历深方法好</li>
+        </ul>
+      </div>
+    </div>
+    <div class="video-section">
+      <div class="video-label">▶ 代表作品</div>
+      <div class="video-list">
+        <div class="video-item">
+          <video controls preload="metadata" playsinline>
+            <source src="../pic/reference/SHiN_choreo_1.mp4" type="video/mp4">
+          </video>
+          <div class="video-item-label"><strong>编舞作品 ①</strong></div>
+        </div>
+        <div class="video-item">
+          <video controls preload="metadata" playsinline>
+            <source src="../pic/reference/SHiN_choreo_2.mp4" type="video/mp4">
+          </video>
+          <div class="video-item-label"><strong>编舞作品 ②</strong> · 中国 Workshop</div>
+        </div>
+        <div class="video-item">
+          <video controls preload="metadata" playsinline>
+            <source src="../pic/reference/SHiN_choreo_3.mp4" type="video/mp4">
+          </video>
+          <div class="video-item-label"><strong>编舞作品 ③</strong> · 被原歌手点赞转发</div>
+        </div>
+        <div class="video-item">
+          <video controls preload="metadata" playsinline>
+            <source src="../pic/reference/SHiN_and_kids.mp4" type="video/mp4">
+          </video>
+          <div class="video-item-label"><strong>SHiN和孩子们</strong></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- hasumi -->
+  <div class="teacher-card">
+    <div class="teacher-header">
+      <img src="../pic/hasumi.jpg" class="teacher-photo" alt="hasumi" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="teacher-photo-placeholder" style="display:none">💃</div>
+      <div class="teacher-info">
+        <div class="teacher-role role-guest">特邀老师</div>
+        <div class="teacher-name">hasumi</div>
+        <ul class="teacher-creds">
+          <li>合作艺人：<strong>NCT · JO1 · 山田凉介 · 中岛健人</strong></li>
+          <li>抖音 · 小红书超人气编舞师</li>
+          <li>日本知名舞室 noa 人气老师</li>
+          <li>深受成人和小朋友学员喜爱</li>
+        </ul>
+      </div>
+    </div>
+    <div class="video-section">
+      <div class="video-label">▶ 代表作品</div>
+      <div class="video-list">
+        <a href="https://v.douyin.com/cPy2pY5wbo0/" target="_blank" class="video-link">
+          <div class="video-thumb">▶</div>
+          <div class="video-meta">
+            <div class="video-title">hasumi 编舞作品 ①</div>
+            <div class="video-src">抖音</div>
+          </div>
+        </a>
+        <a href="https://v.douyin.com/f7JR2k5ln_o/" target="_blank" class="video-link">
+          <div class="video-thumb">▶</div>
+          <div class="video-meta">
+            <div class="video-title">hasumi 编舞作品 ②</div>
+            <div class="video-src">抖音</div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- tenten -->
+  <div class="teacher-card">
+    <div class="teacher-header">
+      <img src="../pic/tenten.jpg" class="teacher-photo" alt="tenten" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="teacher-photo-placeholder" style="display:none">🕺</div>
+      <div class="teacher-info">
+        <div class="teacher-role role-guest">特邀老师</div>
+        <div class="teacher-name">tenten</div>
+        <ul class="teacher-creds">
+          <li>日本艺人 <strong>Da-iCE 官方编舞师</strong></li>
+          <li>人气组合 <strong>BE:FIRST</strong> 出道选秀节目决赛选手</li>
+          <li>日本知名舞室 En 超人气老师</li>
+          <li>每月有小朋友舞蹈集训，经验丰富</li>
+        </ul>
+      </div>
+    </div>
+    <div class="video-section">
+      <div class="video-label">▶ 代表作品</div>
+      <div class="video-list">
+        <div class="video-item">
+          <video controls preload="metadata" playsinline>
+            <source src="../pic/reference/tenten_choreo_1.mp4" type="video/mp4">
+          </video>
+          <div class="video-item-label"><strong>编舞作品 ①</strong></div>
+        </div>
+        <div class="video-item">
+          <video controls preload="metadata" playsinline>
+            <source src="../pic/reference/tenten_choreo_2.mp4" type="video/mp4">
+          </video>
+          <div class="video-item-label"><strong>编舞作品 ②</strong></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── 行程安排 ── -->
+<div class="section">
+  <div class="section-title">✦ 营地行程</div>
+  <table class="schedule-table">
+    <tr>
+      <th>日期</th>
+      <th>内容</th>
+    </tr>
+    <tr>
+      <td>DAY 1<br>8/9 周日</td>
+      <td>分批接机（成田/羽田）→ 入住酒店 → 欢迎晚宴</td>
+    </tr>
+    <tr>
+      <td>DAY 2-5<br>8/10-13</td>
+      <td>
+        AM 10:00-12:00 Hip Hop 大师课<br>
+        PM 14:30-17:30 编舞排练（SHiN 主导）<br>
+        晚 19:00-21:00 复习 + MV 练习
+      </td>
+    </tr>
+    <tr>
+      <td>DAY 6<br>8/14 周五</td>
+      <td>东京外景拍摄 → 游玩东京 → 午餐 → 室内 MV 拍摄 → 结营仪式 + 颁奖 → 庆祝晚宴 → 夜游东京</td>
+    </tr>
+    <tr>
+      <td>DAY 7<br>8/15 周六</td>
+      <td>退房 → 送机 / 原地解散，自由安排之后的日本行程</td>
+    </tr>
+  </table>
+</div>
+
+<!-- ── 费用说明 ── -->
+<div class="section" style="margin-top:28px">
+  <div class="section-title">✦ 费用说明</div>
+  <div class="include-list">
+    <h4>费用包含（孩子）</h4>
+    <ul>
+      <li>7天6晚住宿（同性别合住）</li>
+      <li>接送机 · 全程双语陪同</li>
+      <li>全部课程及训练</li>
+      <li>早餐 · 午餐 · 晚餐（含欢迎晚宴 · 庆祝晚宴）</li>
+      <li>东京集体游玩门票及包车费用</li>
+      <li>东京外景 + 舞室 MV 拍摄及剪辑</li>
+      <li>结营仪式 · 证书 + 奖牌 + T恤 + 礼包</li>
+    </ul>
+  </div>
+  <div class="include-list">
+    <h4>费用不含</h4>
+    <ul>
+      <li>国际机票 · 日本签证</li>
+      <li>个人消费</li>
+    </ul>
+  </div>
+  <div style="background:#1a1a25;border-radius:8px;padding:14px 16px;border:1px solid #2a2a35;font-size:13px;color:#aaa;line-height:1.8;">
+    具体费用及报名方式，请联系您的舞蹈机构老师咨询，或直接添加主办方微信了解详情。
+  </div>
+</div>
+
+<!-- ── 联系方式（两个受众分流） ── -->
+<div style="padding: 24px 16px 0;">
+
+  <!-- 早鸟紧迫感 -->
+  <div style="background:#1a0a00;border:2px solid #FFCC00;border-radius:10px;padding:22px 18px;margin-bottom:14px;text-align:center;">
+    <div style="font-size:12px;font-weight:700;color:#FFCC00;letter-spacing:2px;margin-bottom:10px;">
+      ⚡ 超早鸟名额 · 仅限前8位
+    </div>
+    <div style="font-size:28px;font-weight:900;color:#fff;line-height:1.3;">
+      早报名，享超值优惠价
+    </div>
+    <div style="font-size:14px;color:#cc9900;margin-top:8px;line-height:1.8;">
+      先到先得 · 名额满即恢复标准价
+    </div>
+    <div style="margin-top:14px;background:#2a1800;border-radius:8px;padding:14px 16px;">
+      <div style="font-size:13px;font-weight:700;color:#FFCC00;margin-bottom:8px;">
+        ★ 超早鸟专属 Franklin 福利
+      </div>
+      <div style="font-size:13px;color:#ddd;line-height:1.9;text-align:left;">
+        · Franklin 亲自录制专属欢迎视频，报名后发送<br>
+        · Franklin 限定签名明信片（营期发放）
+      </div>
+    </div>
+    <div style="margin-top:12px;font-size:12px;color:#888;">
+      标准价学员不含以上福利
+    </div>
+  </div>
+
+  <!-- 给家长 -->
+  <div style="background:#FFCC00;border-radius:10px;padding:20px 18px;text-align:center;">
+    <div style="font-size:18px;font-weight:900;color:#0e0e14;margin-bottom:8px;">
+      更多信息
+    </div>
+    <div style="font-size:14px;color:#333;line-height:1.9;margin-bottom:12px;">
+      请联系您所在城市的合作舞蹈机构<br>
+      或直接添加主办方微信咨询
+    </div>
+    <div style="font-size:20px;font-weight:900;color:#0e0e14;">18200106065</div>
+    <div style="font-size:12px;color:#666;margin-top:4px;">请备注「NEWBEE报名」</div>
+  </div>
+
+</div>
+
+<div class="footer">
+  NEWBEE 新蜜蜂 · 东京舞蹈游学营 · 2026<br>
+  《这就是街舞第三季》才艺导演出品
+</div>
+
+</body>
+</html>
